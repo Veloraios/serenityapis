@@ -3,9 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Serenity APIs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function checkToken() {
+            const input = document.getElementById('tokenInput').value;
+            if (input === 'nDD;`)rkF556?4Ax') {
+                const authScreen = document.getElementById('authScreen');
+                const hiddenScreen = document.getElementById('hiddenScreen');
+                
+                authScreen.style.transition = 'transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.7s ease-in-out';
+                authScreen.style.transform = 'scale(1.2)';
+                authScreen.style.opacity = '0';
+                
+                setTimeout(() => {
+                    authScreen.style.display = 'none';
+                    hiddenScreen.style.display = 'flex';
+                    hiddenScreen.style.opacity = '0';
+                    hiddenScreen.style.transform = 'scale(0.8)';
+                    
+                    setTimeout(() => {
+                        hiddenScreen.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+                        hiddenScreen.style.opacity = '1';
+                        hiddenScreen.style.transform = 'scale(1)';
+                    }, 50);
+                }, 700);
+            }
+        }
+        
+        function showAPI(apiId) {
+            document.querySelectorAll('.apiContent').forEach(div => div.style.display = 'none');
+            document.getElementById(apiId).style.display = 'flex';
+        }
+        
+        function goBack() {
+            document.querySelectorAll('.apiContent').forEach(div => div.style.display = 'none');
+        }
+    </script>
 </head>
-<body>
-    <h1>test</h1>
+<body class="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+    <div id="authScreen" class="text-center">
+        <span class="text-red-600 text-6xl">⚠️</span>
+        <h1 class="text-2xl font-bold mt-4">Serenity APIs Auth</h1>
+        <p class="mt-2 text-red-400">API Passwords Will Cost 10$</p>
+        <input id="tokenInput" type="password" placeholder="Enter API Password" class="mt-6 p-2 text-black rounded">
+        <button onclick="checkToken()" class="ml-2 bg-blue-600 px-4 py-2 rounded">Submit</button>
+    </div>
+    
+    <div id="hiddenScreen" class="hidden flex flex-col items-center justify-center h-screen w-screen bg-gray-900 text-white">
+        <h1 class="text-3xl font-bold mb-6">Serenity APIs</h1>
+        <div class="flex flex-col gap-4 w-1/2">
+            <button onclick="showAPI('uploadAPI')" class="bg-white bg-opacity-10 text-white px-6 py-3 rounded-lg text-lg shadow-md hover:bg-opacity-20">Upload API</button>
+            <button onclick="showAPI('ipaSigningAPI')" class="bg-white bg-opacity-10 text-white px-6 py-3 rounded-lg text-lg shadow-md hover:bg-opacity-20">iPA Signing API</button>
+            <button onclick="showAPI('udidRetrieveAPI')" class="bg-white bg-opacity-10 text-white px-6 py-3 rounded-lg text-lg shadow-md hover:bg-opacity-20">UDID Retrieve API</button>
+            <button onclick="showAPI('ipaParsingAPI')" class="bg-white bg-opacity-10 text-white px-6 py-3 rounded-lg text-lg shadow-md hover:bg-opacity-20">iPA Parsing API</button>
+        </div>
+        <p class="mt-6 text-red-400 text-sm">5GB Maximum File Size - Made With PHP & Tailwind</p>
+        
+        <div id="uploadAPI" class="apiContent hidden fixed inset-0 flex flex-col items-center justify-start bg-gray-900 text-white pt-16">
+            <p class="text-red-500 cursor-pointer absolute top-4 left-4" onclick="goBack()">BACK</p>
+            <h2 class="text-2xl font-bold mt-10">Upload API</h2>
+        </div>
+        <div id="ipaSigningAPI" class="apiContent hidden fixed inset-0 flex flex-col items-center justify-start bg-gray-900 text-white pt-16">
+            <p class="text-red-500 cursor-pointer absolute top-4 left-4" onclick="goBack()">BACK</p>
+            <h2 class="text-2xl font-bold mt-10">iPA Signing API</h2>
+        </div>
+        <div id="udidRetrieveAPI" class="apiContent hidden fixed inset-0 flex flex-col items-center justify-start bg-gray-900 text-white pt-16">
+            <p class="text-red-500 cursor-pointer absolute top-4 left-4" onclick="goBack()">BACK</p>
+            <h2 class="text-2xl font-bold mt-10">UDID Retrieve API</h2>
+        </div>
+        <div id="ipaParsingAPI" class="apiContent hidden fixed inset-0 flex flex-col items-center justify-start bg-gray-900 text-white pt-16">
+            <p class="text-red-500 cursor-pointer absolute top-4 left-4" onclick="goBack()">BACK</p>
+            <h2 class="text-2xl font-bold mt-10">iPA Parsing API</h2>
+        </div>
+    </div>
 </body>
 </html>
+
